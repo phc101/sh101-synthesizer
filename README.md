@@ -1,267 +1,239 @@
-# 🎹 SH-101 Synthesizer
+# 🎹 Roland SH-101 Synthesizer Clone
 
-[![Python](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red.svg)](https://streamlit.io/)
+A faithful emulation of the classic Roland SH-101 monophonic analog synthesizer built with Streamlit and Python.
 
-A faithful emulation of the legendary **Roland SH-101** monophonic analog synthesizer, implemented in Python with multiple interfaces: web-based (Streamlit), browser-based (React), and desktop with computer keyboard control (Pygame).
+## Features
 
-## ✨ Features
+### Oscillator Section
+- **Multiple Waveforms**: Sawtooth, Square, Pulse, Triangle, Sine
+- **Pulse Width Modulation**: Adjustable duty cycle for square/pulse waves
+- **Detune**: Fine-tuning control in cents
+- **Sub Oscillator**: One octave below the main oscillator
+- **Noise Generator**: White noise for percussive sounds
 
-### Synthesis Engine
-- 🎵 **Multiple Waveforms**: Sawtooth, Square, Pulse, Triangle, Sine
-- 🎚️ **Resonant Filter**: State-variable filter with lowpass, bandpass, and highpass modes
-- 📊 **ADSR Envelope**: Full Attack, Decay, Sustain, Release controls
-- 〰️ **LFO Modulation**: Sine, Triangle, Square, and Sample & Hold waveforms
-- 🔊 **Sub Oscillator**: One octave below main oscillator for massive bass
-- 🎛️ **Real-time Synthesis**: Low-latency audio generation at 44.1kHz
+### Filter Section
+- **Resonant Filter**: State-variable filter with multiple types
+- **Filter Types**: Lowpass, Bandpass, Highpass
+- **Resonance Control**: Self-oscillating at high settings
+- **Envelope Modulation**: ADSR envelope amount for filter cutoff
 
-### User Interfaces
-1. **Streamlit Web Interface** - Adjustable parameters with visual controls
-2. **React Browser Version** - Works directly in browser, optimized for mobile
-3. **Pygame Keyboard Version** - Play with your computer keyboard like a piano!
+### Envelope Generator
+- **ADSR Envelope**: Full Attack, Decay, Sustain, Release controls
+- **Exponential Curves**: Natural-sounding envelope shapes
+- **Dual Application**: Controls both VCA (amplitude) and VCF (filter)
 
-### Built-in Presets
-- 🎸 **Bass** - Deep, powerful bass sounds
-- 🎺 **Lead** - Cutting synth leads
-- 🧪 **Acid** - Classic TB-303 style acid bassline
-- 🌊 **Pad** - Smooth atmospheric sounds
-- 🎺 **Brass** - Brassy, punchy tones
+### LFO (Low-Frequency Oscillator)
+- **Multiple Waveforms**: Sine, Triangle, Square, Sample & Hold
+- **Rate Control**: 0-20 Hz modulation rate
+- **Depth Control**: Amount of modulation applied to filter cutoff
 
-## 🚀 Quick Start
+### Virtual Keyboard
+- **12-Note Keyboard**: One octave layout
+- **Octave Selection**: 2-6 octave range
+- **Visual Feedback**: Black and white key distinction
 
-### Option 1: Streamlit Web Version (Recommended for Beginners)
+### Presets
+- **Bass**: Deep, powerful bass sounds
+- **Lead**: Cutting lead tones
+- **Pad**: Smooth, atmospheric sounds
+- **Acid**: Classic acid bassline sound
+- **Brass**: Brassy, resonant tones
 
-```bash
-# Install dependencies
-pip install -r requirements.txt
-
-# Run the enhanced version
-streamlit run sh101_synth_enhanced.py
-```
-
-Then open your browser to `http://localhost:8501`
-
-### Option 2: React Browser Version (Mobile-Friendly)
-
-The React version (`.jsx` file) runs directly in the browser as a Claude Artifact. Perfect for mobile devices!
-
-### Option 3: Desktop with Keyboard Control
-
-```bash
-# Install dependencies
-pip install -r requirements_keyboard.txt
-
-# Run the keyboard version
-python sh101_keyboard.py
-```
-
-**Keyboard Controls:**
-```
-Piano Keys:  A W S E D F T G Y H U J K
-             │ │ │ │ │ │ │ │ │ │ │ │ │
-             C C# D D# E F F# G G# A A# B C
-
-Z = Octave Down    X = Octave Up
-1-5 = Load Presets (Bass, Lead, Acid, Pad, Brass)
-ESC = Quit
-```
-
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 - Python 3.8 or higher
 - Audio output device (speakers/headphones)
-- (Optional) Git for version control
 
-### Standard Installation
+### Quick Start
 
+1. **Clone or download the files**
+
+2. **Install dependencies**:
 ```bash
-# Clone the repository
-git clone https://github.com/YOUR_USERNAME/sh101-synthesizer.git
-cd sh101-synthesizer
-
-# Install Streamlit version dependencies
-pip install -r requirements.txt
-
-# Or install keyboard version dependencies
-pip install -r requirements_keyboard.txt
-```
-
-### Virtual Environment (Recommended)
-
-```bash
-# Create virtual environment
-python -m venv venv
-
-# Activate it
-# On Windows:
-venv\Scripts\activate
-# On Mac/Linux:
-source venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
-## 🎛️ Synth Parameters
-
-| Parameter | Description | Range |
-|-----------|-------------|-------|
-| **Oscillator** | Waveform selection | Sawtooth, Square, Pulse, Triangle, Sine |
-| **Sub Oscillator** | One octave below main | 0.0 - 1.0 |
-| **Cutoff** | Filter cutoff frequency | 100 - 8000 Hz |
-| **Resonance** | Filter resonance/Q | 0.0 - 4.0 |
-| **Attack** | Envelope attack time | 0.001 - 2.0 s |
-| **Decay** | Envelope decay time | 0.001 - 2.0 s |
-| **Sustain** | Envelope sustain level | 0.0 - 1.0 |
-| **Release** | Envelope release time | 0.001 - 3.0 s |
-| **LFO Rate** | Modulation speed | 0 - 20 Hz |
-| **LFO Depth** | Modulation amount | 0.0 - 1.0 |
-
-## 🎨 Sound Design Tips
-
-### Creating Classic Sounds
-
-**Fat Bass:**
-1. Waveform: Sawtooth
-2. Sub Oscillator: 0.6-0.8
-3. Cutoff: 500-800 Hz
-4. Resonance: 1.0-1.5
-5. Short Attack (0.01s), Medium Decay (0.4s)
-6. Low Sustain (0.3)
-
-**Acid Bassline:**
-1. Waveform: Square
-2. Cutoff: 300-600 Hz
-3. Resonance: 2.0-3.0 (high!)
-4. Attack: 0.01s
-5. Decay: 0.1-0.2s
-6. Sustain: 0.0
-7. Short Release (0.1s)
-
-**Synth Pad:**
-1. Waveform: Sawtooth
-2. Cutoff: 1500-2500 Hz
-3. Long Attack (0.8s) and Release (1.5s)
-4. High Sustain (0.8)
-5. Slow LFO (2-4 Hz) with low depth
-
-**Lead Sound:**
-1. Waveform: Square or Pulse
-2. Cutoff: 2500-4000 Hz
-3. Medium Attack (0.05-0.1s)
-4. Add slight LFO for vibrato
-
-## 🏗️ Project Structure
-
-```
-sh101-synthesizer/
-├── README.md                    # This file
-├── LICENSE                      # MIT License
-├── .gitignore                   # Git ignore rules
-├── GITHUB_GUIDE.md             # How to publish to GitHub
-├── requirements.txt             # Streamlit dependencies
-├── requirements_keyboard.txt    # Pygame dependencies
-├── sh101_synth.py              # Basic Streamlit version
-├── sh101_synth_enhanced.py     # Enhanced Streamlit version
-├── sh101_keyboard.py           # Pygame keyboard version
-├── sh101-synth-online.jsx      # React browser version
-└── run_synth.sh                # Quick start script
+Or install manually:
+```bash
+pip install streamlit numpy scipy sounddevice
 ```
 
-## 🔧 Technical Details
+3. **Run the synthesizer**:
+
+Basic version:
+```bash
+streamlit run sh101_synth.py
+```
+
+Enhanced version (recommended):
+```bash
+streamlit run sh101_synth_enhanced.py
+```
+
+Using the run script:
+```bash
+chmod +x run_synth.sh
+./run_synth.sh
+```
+
+## Usage
+
+### Basic Controls
+
+1. **Select a Preset**: Choose from the sidebar preset menu to load pre-configured sounds
+2. **Adjust Parameters**: 
+   - Oscillator: Select waveform and adjust pulse width
+   - Filter: Set cutoff frequency and resonance
+   - Envelope: Control attack, decay, sustain, release times
+   - LFO: Add modulation with rate and depth controls
+3. **Play Notes**: Click the virtual keyboard buttons to play notes
+4. **Test Sound**: Use the "Test A4" button to hear a reference tone
+
+### Sound Design Tips
+
+#### Creating a Fat Bass
+1. Set waveform to **Sawtooth**
+2. Increase **Sub Oscillator** to 0.5-0.7
+3. Set **Cutoff** to 500-800 Hz
+4. Increase **Resonance** to 1.0-1.5
+5. Set **Filter Envelope** to 1.5-2.0
+6. Use short **Attack** (0.01s) and **Decay** (0.3-0.5s)
+7. Lower **Sustain** to 0.2-0.4
+
+#### Creating an Acid Lead
+1. Set waveform to **Square**
+2. **Cutoff**: 300-600 Hz
+3. **Resonance**: 2.0-3.0 (high!)
+4. **Filter Envelope**: 2.0-3.0
+5. **Attack**: 0.01s
+6. **Decay**: 0.1-0.2s
+7. **Sustain**: 0.0
+8. **Release**: 0.1s
+9. Add LFO modulation for movement
+
+#### Creating a Synth Pad
+1. Set waveform to **Sawtooth**
+2. **Cutoff**: 1500-2500 Hz
+3. **Resonance**: 0.3-0.5
+4. **Attack**: 0.5-1.0s
+5. **Release**: 1.0-2.0s
+6. **Sustain**: 0.7-0.9
+7. Add slow **LFO** (2-4 Hz) with low depth
+
+#### Creating a Lead Sound
+1. Set waveform to **Square** or **Pulse**
+2. **Cutoff**: 2500-4000 Hz
+3. **Resonance**: 0.5-1.0
+4. **Filter Envelope**: 0.5-1.0
+5. **Attack**: 0.05-0.1s
+6. **Decay**: 0.2-0.4s
+7. **Sustain**: 0.6-0.8
+8. Add slight **LFO** modulation for vibrato
+
+## Technical Details
 
 ### Audio Engine
 - **Sample Rate**: 44,100 Hz
-- **Block Size**: 1024-2048 samples
+- **Block Size**: 2048 samples
 - **Bit Depth**: 32-bit float
-- **Synthesis**: Real-time subtractive synthesis
-- **Filter**: State-variable filter with resonance feedback
+- **Latency**: ~46ms (depends on system)
+
+### Synthesis Method
+- **Oscillators**: Band-limited waveform generation
+- **Filter**: State-variable filter implementation
+- **Envelopes**: Exponential curves for natural sound
+- **Real-time**: Streaming audio synthesis
 
 ### Architecture
 ```
-Oscillator → Sub Oscillator Mix → 
-LFO Modulation → Resonant Filter (with Envelope Mod) → 
+Oscillator → Sub Osc Mix → Noise Mix → 
+LFO Modulation → Filter (with Env Mod) → 
 Amplitude Envelope → Output
 ```
 
-## 🐛 Troubleshooting
+## Files
 
-### No Sound Output
-1. Check system audio is working
-2. Verify audio device isn't muted
-3. Try adjusting Master Volume slider
-4. On mobile: tap the "Enable Audio" button first
+- `sh101_synth.py` - Basic version with core functionality
+- `sh101_synth_enhanced.py` - Enhanced version with presets and improved UI
+- `requirements.txt` - Python dependencies
+- `run_synth.sh` - Convenience script to run the synthesizer
+- `README.md` - This file
+
+## Troubleshooting
+
+### No Sound
+1. Check your system audio output is working
+2. Verify audio permissions for Python/terminal
+3. Try adjusting the **Master Volume** slider
+4. Check that your audio device is not muted
+5. Try running with: `python -m sounddevice` to test audio
 
 ### High CPU Usage
-- Real-time synthesis is CPU-intensive
-- Close other applications
-- Try increasing block size in code
+1. The real-time synthesis is CPU-intensive
+2. Close other applications
+3. Reduce the browser tab count
+4. The audio callback runs continuously
+
+### Crackling/Popping
+1. Increase the block size in the code (BLOCK_SIZE = 4096)
+2. Close other audio applications
+3. Check CPU usage
+4. Update audio drivers
 
 ### Import Errors
 ```bash
-pip install --upgrade -r requirements.txt
+# Make sure all dependencies are installed
+pip install --upgrade streamlit numpy scipy sounddevice
 ```
 
-### Pygame Version Won't Run
-```bash
-pip install pygame numpy scipy sounddevice
-```
+## Limitations
 
-## 🤝 Contributing
+- **Monophonic**: Only one note at a time (true to the original)
+- **No MIDI**: Currently no MIDI input support (planned)
+- **No Recording**: No built-in audio recording (use system audio recorder)
+- **Browser-based**: Runs in web browser via Streamlit
 
-Contributions are welcome! Here's how you can help:
+## Future Enhancements
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+- [ ] Computer keyboard to MIDI mapping
+- [ ] MIDI input support
+- [ ] Built-in arpeggiator
+- [ ] Step sequencer
+- [ ] Preset save/load
+- [ ] Audio recording/export
+- [ ] More filter types (Moog-style, etc.)
+- [ ] Portamento/glide
+- [ ] Effects (delay, chorus, distortion)
 
-### Ideas for Contributions
-- Additional waveforms or filter types
-- Preset save/load functionality
-- MIDI input support
-- Recording/export to WAV
-- Arpeggiator
-- Step sequencer
-- More accurate analog modeling
+## Contributing
+
+Feel free to fork and improve! Some areas for contribution:
+- Better filter algorithms
+- More accurate oscillator modeling
 - Performance optimizations
+- UI/UX improvements
+- Additional presets
 
-## 📝 License
+## Acknowledgments
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Based on the legendary Roland SH-101 synthesizer (1982-1986), a monophonic analog synthesizer that became a staple in electronic music, particularly in acid house and techno.
 
-## 🙏 Acknowledgments
+## License
 
-- Based on the legendary **Roland SH-101** synthesizer (1982-1986)
-- Inspired by the analog synthesis techniques of the 1980s
-- Built with modern Python audio libraries
+This is an educational project. Roland and SH-101 are trademarks of Roland Corporation.
 
-## 📚 Resources
+## Technical Notes
 
-- [Web Audio API Documentation](https://developer.mozilla.org/en-US/Web_Audio_API)
-- [Streamlit Documentation](https://docs.streamlit.io/)
-- [Digital Signal Processing Tutorial](https://jackschaedler.github.io/circles-sines-signals/)
-- [Sound On Sound: Synth Secrets](https://www.soundonsound.com/series/synth-secrets)
+### State-Variable Filter
+The filter uses a digital state-variable filter implementation that provides simultaneous lowpass, bandpass, and highpass outputs. The resonance parameter adds feedback to create the classic resonant "peak" that can self-oscillate at high settings.
 
-## 🎵 Made With
+### Envelope Implementation
+The ADSR envelope uses exponential curves rather than linear ramps, which sounds more natural and analog-like. The release stage maintains the envelope level at note-off to prevent clicks.
 
-- [Python](https://www.python.org/) - Core language
-- [NumPy](https://numpy.org/) - Numerical computing
-- [SciPy](https://scipy.org/) - Signal processing
-- [Streamlit](https://streamlit.io/) - Web interface
-- [Pygame](https://www.pygame.org/) - Keyboard control
-- [React](https://react.dev/) - Browser interface
-- [SoundDevice](https://python-sounddevice.readthedocs.io/) - Audio I/O
-
-## 📧 Contact
-
-Have questions or feedback? Open an issue or reach out!
+### Phase Continuity
+The oscillator maintains phase continuity between buffer blocks to prevent discontinuities and clicks in the audio output.
 
 ---
 
-**Note**: Roland and SH-101 are trademarks of Roland Corporation. This is an educational project and not affiliated with or endorsed by Roland Corporation.
-
-⭐ If you like this project, please give it a star on GitHub!# sh101-synthesizer
+**Enjoy making music with your SH-101 clone!** 🎵
